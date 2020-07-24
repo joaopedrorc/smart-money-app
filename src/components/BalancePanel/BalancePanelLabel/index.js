@@ -16,10 +16,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    fontSize: 18,
+    fontSize: 20,
   },
   value: {
-    fontSize: 22,
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
 

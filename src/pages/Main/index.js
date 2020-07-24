@@ -1,14 +1,18 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, Button, StyleSheet} from 'react-native';
 
 import BalancePanel from '../../components/BalancePanel';
 import EntrySummary from '../../components/EntrySummary';
 import EntryList from '../../components/EntryList';
 
-const Main = () => {
+const Main = ({navigation}) => {
   return (
     <View style={styles.container}>
       <BalancePanel />
+      <Button
+        title="Adicionar"
+        onPress={() => navigation.navigate('NewEntry')}
+      />
       <EntrySummary />
       <EntryList />
     </View>
@@ -18,7 +22,7 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    paddingTop: 40,
   },
 });
 
