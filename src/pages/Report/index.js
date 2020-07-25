@@ -1,14 +1,30 @@
 import React from 'react';
 import {View, Picker, Button} from 'react-native';
 
-import EntryLabel from '../../components/BalanceLabel';
 import EntrySummary from '../../components/EntrySummary';
 import EntryList from '../../components/EntryList';
+import BalanceLabel from '../../components/BalanceLabel';
 
 const Report = () => {
+  const currentBalance = 1500.0;
+
+  const entriesGruped = [
+    {key: '1', description: 'Alimentação', amount: 'R$200'},
+    {key: '2', description: 'Combustível', amount: 'R$20'},
+    {key: '3', description: 'Aluguel', amount: 'R$500'},
+    {key: '4', description: 'Lazer', amount: 'R$400'},
+    {key: '5', description: 'Outros', amount: 'R$1.200'},
+  ];
+
+  const entries = [
+    {key: '1', description: 'Padaria', amount: 'R$500'},
+    {key: '2', description: 'Supermercado', amount: 'R$400'},
+    {key: '3', description: 'Posto', amount: 'R$1.200'},
+  ];
+
   return (
     <View>
-      <EntryLabel />
+      <BalanceLabel currentBalance={currentBalance} />
       <View>
         <Picker>
           <Picker.Item label="Todas Categorias" />
@@ -17,8 +33,8 @@ const Report = () => {
           <Picker.Item label="Últimos 7 dias" />
         </Picker>
       </View>
-      <EntrySummary />
-      <EntryList />
+      <EntrySummary entriesGruped={entriesGruped} />
+      <EntryList entries={entries} />
       <View>
         <Button title="Salvar" />
         <Button title="Fechar" />

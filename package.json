@@ -17,7 +17,8 @@
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
-    "react-navigation": "^4.4.0"
+    "react-navigation": "^4.4.0",
+    "realm": "^6.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
