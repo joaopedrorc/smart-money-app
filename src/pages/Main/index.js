@@ -24,7 +24,7 @@ const Main = ({navigation}) => {
         onPress={() => navigation.navigate('NewEntry')}
       />
       <EntrySummary entriesGruped={entriesGruped} />
-      <EntryList />
+      <EntryList navigation={navigation} />
     </View>
   );
 };
