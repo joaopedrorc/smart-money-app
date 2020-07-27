@@ -16,7 +16,7 @@ const entriesGruped = [
 const EntrySummary = () => {
   return (
     <Container
-    title="Categorias"
+      title="Categorias"
       actionLabelText="Últimos 7 dias"
       actionButtonText="Ver mais"
       onPressActionButton={() => {}}>
