@@ -8,18 +8,10 @@ import EntryList from '../../components/EntryList';
 import Colors from '../../styles/Colors';
 
 const Main = ({navigation}) => {
-  const entriesGruped = [
-    {key: '1', description: 'Alimentação', amount: 'R$200'},
-    {key: '2', description: 'Combustível', amount: 'R$20'},
-    {key: '3', description: 'Aluguel', amount: 'R$500'},
-    {key: '4', description: 'Lazer', amount: 'R$400'},
-    {key: '5', description: 'Outros', amount: 'R$1.200'},
-  ];
-
   return (
     <View style={styles.container}>
       <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
-      <EntrySummary entriesGruped={entriesGruped} />
+      <EntrySummary />
       <EntryList navigation={navigation} />
     </View>
   );

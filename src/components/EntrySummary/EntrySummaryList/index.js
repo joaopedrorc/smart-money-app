@@ -4,7 +4,6 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 const EntrySummaryList = ({entriesGruped}) => {
   return (
     <View>
-      <Text style={styles.title}>Categorias</Text>
       <FlatList
         data={entriesGruped}
         renderItem={({item}) => (
@@ -20,12 +19,6 @@ const EntrySummaryList = ({entriesGruped}) => {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
   },
 });
 

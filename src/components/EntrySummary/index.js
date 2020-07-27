@@ -1,22 +1,29 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+
+import Container from '../Core/Container';
 
 import EntrySummaryChart from './EntrySummaryChart';
 import EntrySummaryList from './EntrySummaryList';
 
-const EntrySummary = ({entriesGruped}) => {
+const entriesGruped = [
+  {key: '1', description: 'Alimentação', amount: 'R$200'},
+  {key: '2', description: 'Combustível', amount: 'R$20'},
+  {key: '3', description: 'Aluguel', amount: 'R$500'},
+  {key: '4', description: 'Lazer', amount: 'R$400'},
+  {key: '5', description: 'Outros', amount: 'R$1.200'},
+];
+
+const EntrySummary = () => {
   return (
-    <View style={styles.container}>
+    <Container
+    title="Categorias"
+      actionLabelText="Últimos 7 dias"
+      actionButtonText="Ver mais"
+      onPressActionButton={() => {}}>
       <EntrySummaryChart />
       <EntrySummaryList entriesGruped={entriesGruped} />
-    </View>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
-});
 
 export default EntrySummary;
