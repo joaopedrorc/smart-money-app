@@ -1,15 +1,18 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+Icon.loadFont();
 
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
 
 import Colors from '../../styles/Colors';
 
-const BalancePanel = ({currentBalance}) => {
+const BalancePanel = ({onNewEntryPress}) => {
+  const currentBalance = 1500.0;
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -18,9 +21,8 @@ const BalancePanel = ({currentBalance}) => {
         <BalancePanelLabel currentBalance={currentBalance} />
         <BalancePanelChart />
       </LinearGradient>
-      <TouchableOpacity style={styles.button}>
-        <Text>+</Text>
-        {/* <Icon name="add" size={30} color={Colors.white} /> */}
+      <TouchableOpacity style={styles.button} onPress={onNewEntryPress}>
+        <Icon name="add" size={30} color={Colors.white} />
       </TouchableOpacity>
     </View>
   );
@@ -37,10 +39,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'flex-end',
-    marginTop: -25,
-    marginRight: 10,
     width: 50,
     height: 50,
+    shadowColor: Colors.black,
+    elevation: 5,
+    marginTop: -25,
+    marginRight: 10,
   },
 });
 
