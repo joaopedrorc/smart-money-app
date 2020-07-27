@@ -1,0 +1,33 @@
+const Colors = {
+  white: '#ffffff',
+  black: '#000000',
+  turquuoise: '#1abc9c',
+  emerald: '#2ecc71',
+  peterRiver: '#3498db',
+  amethyst: '#9b59b6',
+  wetAsphalt: '#34495e',
+  midnightBlue: '#2c3e50',
+  concrete: '#95a5a6',
+  abestos: '#7f8c8d',
+  wisteria: '#8e44ad',
+  clouds: '#ecf0f1',
+  silver: '#bdc3c7',
+  belizeHole: '#2980b9',
+  alizarin: '#e74c3c',
+  pomegranate: '#c0392b',
+  nephritis: '#27ae60',
+  carrot: '#e67e22',
+  pumpikin: '#d35400',
+  greenSea: '#16a085',
+  sunFlower: '#f1c40f',
+  orange: '#f39c12',
+
+  primary: '#3498db',
+  secondary: '#2ecc71',
+  danger: '#f37272',
+  ligth: '#ecf0f1',
+  dark: '#34495e',
+  backgorund: '#233240',
+};
+
+export default Colors;
