@@ -1,12 +1,33 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 import {TextInputMask} from 'react-native-masked-text';
 import Colors from '../../../styles/Colors';
 
 const NewEntryInput = ({value, onChangeValue}) => {
+  const [debit, setDebit] = useState(value < 0 ? -1 : 1);
+  const [debitPrefix, setDebitPrefix] = useState(value < 0 ? '-' : '');
+
+  const onChangeDebitCredit = () => {
+    if (debit < 0) {
+      setDebit(1);
+      setDebitPrefix('');
+    } else {
+      setDebit(-1);
+      setDebitPrefix('-');
+    }
+
+    onChangeValue(value * -1);
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.debitButton}
+        onPress={onChangeDebitCredit}>
+        <Text style={styles.debitButtonPrefix}>{debitPrefix}</Text>
+        <Text style={styles.debitButtonText}>R$</Text>
+      </TouchableOpacity>
       <TextInputMask
         style={styles.input}
         type={'money'}
@@ -20,7 +41,7 @@ const NewEntryInput = ({value, onChangeValue}) => {
         value={value}
         includeRawValueInChangeText={true}
         onChangeText={(maskedValue, rawValue) => {
-          onChangeValue(rawValue);
+          onChangeValue(rawValue * debit);
         }}
       />
     </View>
@@ -28,15 +49,34 @@ const NewEntryInput = ({value, onChangeValue}) => {
 };
 
 const styles = StyleSheet.create({
-  input: {
+  container: {
+    flexDirection: 'row',
     backgroundColor: Colors.wetAsphalt,
     borderRadius: 15,
     marginHorizontal: 20,
     marginVertical: 10,
     paddingVertical: 15,
+  },
+  debitButton: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+  },
+  debitButtonPrefix: {
+    fontSize: 28,
+    color: Colors.white,
+    minWidth: 14,
+  },
+  debitButtonText: {
+    fontSize: 28,
+    color: Colors.white,
+  },
+  input: {
+    flex: 1,
     fontSize: 30,
     color: Colors.white,
-    textAlign: 'center',
+    textAlign: 'right',
+    paddingRight: 20,
+    paddingLeft: 0,
   },
 });
 
