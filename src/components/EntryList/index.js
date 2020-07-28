@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, Button, StyleSheet} from 'react-native';
+import {FlatList} from 'react-native';
 
 import Container from '../Core/Container';
 
@@ -7,7 +7,7 @@ import EntryListItem from './EntryListItem';
 
 import {getEntries} from '../../services/Entries';
 
-const EntryList = ({}) => {
+const EntryList = ({onEntryPress, onPressActionButton}) => {
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
@@ -26,27 +26,21 @@ const EntryList = ({}) => {
       title="Últimos lançamentos"
       actionLabelText="Últimos 7 dias"
       actionButtonText="Ver mais"
-      onPressActionButton={() => {}}>
-      <Text style={styles.title}>Últimos Lançamentos</Text>
+      onPressActionButton={onPressActionButton}>
       <FlatList
         data={entries}
         keyExtractor={(item) => item.id}
-        renderItem={({item}) => (
-          <View>
-            <Text style={styles.entry}>
-              - {item.description} - ${item.amount}
-            </Text>
-          </View>
+        renderItem={({item, index}) => (
+          <EntryListItem
+            entry={item}
+            isFistItem={index === 0}
+            isLastItem={index === entries.length - 1}
+            onEntryPress={onEntryPress}
+          />
         )}
       />
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
-});
 
 export default EntryList;

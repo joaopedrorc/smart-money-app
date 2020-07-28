@@ -5,7 +5,7 @@ import EntrySummary from '../../components/EntrySummary';
 import EntryList from '../../components/EntryList';
 import BalanceLabel from '../../components/BalanceLabel';
 
-const Report = () => {
+const Report = ({navigation}) => {
   const currentBalance = 1500.0;
 
   const entriesGruped = [
@@ -36,7 +36,7 @@ const Report = () => {
       <EntrySummary entriesGruped={entriesGruped} />
       <EntryList entries={entries} />
       <View>
-        <Button title="Salvar" />
+        <Button title="Salvar" onPress={() => navigation.goBack()}/>
         <Button title="Fechar" />
       </View>
     </View>
