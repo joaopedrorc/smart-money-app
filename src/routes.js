@@ -13,7 +13,7 @@ const Routes = createAppContainer(
     },
     {
       initialRouteName: 'Main',
-      backBehavior: 'order',
+      backBehavior: 'history',
     },
   ),
 );

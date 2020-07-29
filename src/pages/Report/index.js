@@ -1,46 +1,98 @@
-import React from 'react';
-import {View, Picker, Button} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import ActionFooter, {
+  ActionPrimaryButton,
+} from '../../components/Core/ActionFooter';
 
 import EntrySummary from '../../components/EntrySummary';
 import EntryList from '../../components/EntryList';
 import BalanceLabel from '../../components/BalanceLabel';
+import relativeDaysModal from '../../components/RelativeDaysModal';
+
+import Colors from '../.../../../styles/Colors';
+import RelativeDaysModal from '../../components/RelativeDaysModal';
 
 const Report = ({navigation}) => {
-  const currentBalance = 1500.0;
+  const [relativeDaysModalVisible, setRelativeDaysModalVisible] = useState(
+    false,
+  );
+  const [relativeDays, setRelativeDays] = useState(7);
 
-  const entriesGruped = [
-    {key: '1', description: 'Alimentação', amount: 'R$200'},
-    {key: '2', description: 'Combustível', amount: 'R$20'},
-    {key: '3', description: 'Aluguel', amount: 'R$500'},
-    {key: '4', description: 'Lazer', amount: 'R$400'},
-    {key: '5', description: 'Outros', amount: 'R$1.200'},
-  ];
+  const onRelativeDaysPress = (item) => {
+    setRelativeDays(item);
+    onRelativeDaysClosePress();
+  };
 
-  const entries = [
-    {key: '1', description: 'Padaria', amount: 'R$500'},
-    {key: '2', description: 'Supermercado', amount: 'R$400'},
-    {key: '3', description: 'Posto', amount: 'R$1.200'},
-  ];
+  const onRelativeDaysClosePress = () => {
+    setRelativeDaysModalVisible(false);
+  };
 
   return (
-    <View>
-      <BalanceLabel currentBalance={currentBalance} />
+    <View style={styles.container}>
+      <BalanceLabel />
+
       <View>
-        <Picker>
-          <Picker.Item label="Todas Categorias" />
-        </Picker>
-        <Picker>
-          <Picker.Item label="Últimos 7 dias" />
-        </Picker>
+        <TouchableOpacity
+          style={styles.filterButton}
+          onPress={() => {
+            setRelativeDaysModalVisible(true);
+          }}>
+          <Text
+            style={
+              styles.filterButtonText
+            }>{`Últimos ${relativeDays} dias`}</Text>
+          <Icon name="keyboard-arrow-down" size={20} color={Colors.silver} />
+        </TouchableOpacity>
+        <RelativeDaysModal
+          isVisible={relativeDaysModalVisible}
+          onConfirm={onRelativeDaysPress}
+          onCancel={onRelativeDaysClosePress}
+        />
       </View>
-      <EntrySummary entriesGruped={entriesGruped} />
-      <EntryList entries={entries} />
-      <View>
-        <Button title="Salvar" onPress={() => navigation.goBack()}/>
-        <Button title="Fechar" />
-      </View>
+
+      <ScrollView>
+        <EntrySummary />
+        <EntryList days={relativeDays} />
+      </ScrollView>
+
+      <ActionFooter>
+        <ActionPrimaryButton
+          title="Fechar"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
+      </ActionFooter>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.backgorund,
+  },
+  filterButton: {
+    flexDirection: 'row',
+    borderColor: Colors.silver,
+    borderWidth: 1,
+    borderRadius: 50,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginHorizontal: 5,
+  },
+  filterButtonText: {
+    color: Colors.silver,
+  },
+});
 
 export default Report;
