@@ -3,6 +3,7 @@ import {View, TextInput, Button, StyleSheet} from 'react-native';
 
 import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from '../NewEntry/NewEntryInput';
+import NewEntryCategoryPicker from '../NewEntry/NewEntryCategoryPicker';
 
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
@@ -49,8 +50,8 @@ const NewEntry = ({navigation}) => {
 
       <View>
         <NewEntryInput value={amount} onChangeValue={setAmount} />
+        <NewEntryCategoryPicker />
 
-        <TextInput style={styles.input} />
         <Button title="GPS" />
         <Button title="Camera" />
       </View>
