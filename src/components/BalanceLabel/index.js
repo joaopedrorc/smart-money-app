@@ -29,12 +29,14 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     color: Colors.white,
+    marginTop: 30,
   },
   panel: {
     borderRadius: 10,
     paddingHorizontal: 50,
     paddingVertical: 10,
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 20,
   },
   value: {
     fontSize: 28,
