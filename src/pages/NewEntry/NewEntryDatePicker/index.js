@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 10,
   },
 });
 

@@ -8,6 +8,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import ActionFooter, {
+  ActionPrimaryButton,
+  ActionSecundaryButton,
+} from '../../../components/Core/ActionFooter';
+
 import {
   getDebitCategories,
   getCreditCategories,
@@ -49,6 +54,7 @@ const NewEntryCategoryPicker = ({debit, category, onChangeCategory}) => {
         }}>
         <Text style={styles.pickerButtonText}>{category.name}</Text>
       </TouchableOpacity>
+
       <Modal animationType="slide" transparent={false} visible={modalVisible}>
         <View style={styles.modal}>
           <FlatList
@@ -66,9 +72,9 @@ const NewEntryCategoryPicker = ({debit, category, onChangeCategory}) => {
             )}
           />
 
-          <TouchableOpacity style={styles.closeModal} onPress={onClosePress}>
-            <Text style={styles.closeModalText}>Fechar</Text>
-          </TouchableOpacity>
+          <ActionFooter>
+            <ActionPrimaryButton title="Fechar" onPress={onClosePress} />
+          </ActionFooter>
         </View>
       </Modal>
     </View>
@@ -109,9 +115,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   closeModal: {
-    backgroundColor: Colors.wetAsphalt,
     borderWidth: 1,
-    borderColor: Colors.greenSea,
+    borderColor: Colors.secondary,
     borderRadius: 15,
     alignSelf: 'center',
     marginVertical: 10,
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
   },
   closeModalText: {
     fontSize: 22,
-    color: Colors.greenSea,
+    color: Colors.secondary,
     textAlign: 'center',
   },
 });

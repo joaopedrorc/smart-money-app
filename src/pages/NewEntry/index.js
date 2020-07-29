@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+
+import ActionFooter, {
+  ActionPrimaryButton,
+  ActionSecundaryButton,
+} from '../../components/Core/ActionFooter';
 
 import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from '../NewEntry/NewEntryInput';
 import NewEntryCategoryPicker from '../NewEntry/NewEntryCategoryPicker';
 import NewEntryDatePicker from '../NewEntry/NewEntryDatePicker';
+import NewEntryDeleteAction from '../NewEntry/NewEntryDeleteAction';
 
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
@@ -71,18 +77,19 @@ const NewEntry = ({navigation}) => {
 
         <View style={styles.formActionConatainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          <NewEntryDeleteAction entry={entry} onOkPress={onDelete} />
         </View>
       </View>
 
-      <View>
-        <Button
-          title="Adicionar"
+      <ActionFooter>
+        <ActionPrimaryButton
+          title={entry.id ? 'Salvar' : 'Adicionar'}
           onPress={() => {
             isValid() && onSave();
           }}
         />
-        <Button title="Cancelar" onPress={onClose} />
-      </View>
+        <ActionSecundaryButton title="Cancelar" onPress={onClose} />
+      </ActionFooter>
     </View>
   );
 };
