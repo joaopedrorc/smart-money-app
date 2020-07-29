@@ -4,6 +4,7 @@ import {View, Button, StyleSheet} from 'react-native';
 import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from '../NewEntry/NewEntryInput';
 import NewEntryCategoryPicker from '../NewEntry/NewEntryCategoryPicker';
+import NewEntryDatePicker from '../NewEntry/NewEntryDatePicker';
 
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
@@ -21,6 +22,7 @@ const NewEntry = ({navigation}) => {
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
+  const [entryAt, setEntryAt] = useState(entry.entryAt);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -33,7 +35,9 @@ const NewEntry = ({navigation}) => {
     const data = {
       amount: parseFloat(amount),
       category: category,
+      entryAt: entryAt,
     };
+
     console.log('NewEntry :: save: ', data);
     saveEntry(data, entry);
     onClose();
@@ -52,20 +56,22 @@ const NewEntry = ({navigation}) => {
     <View style={styles.container}>
       <BalanceLabel />
 
-      <View>
+      <View style={styles.formContainer}>
         <NewEntryInput
           value={amount}
           onChangeDebit={setDebit}
           onChangeValue={setAmount}
         />
+
         <NewEntryCategoryPicker
           debit={debit}
           category={category}
           onChangeCategory={setCategory}
         />
 
-        <Button title="GPS" />
-        <Button title="Camera" />
+        <View style={styles.formActionConatainer}>
+          <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+        </View>
       </View>
 
       <View>
@@ -75,7 +81,6 @@ const NewEntry = ({navigation}) => {
             isValid() && onSave();
           }}
         />
-        <Button title="Excluir" onPress={onDelete} />
         <Button title="Cancelar" onPress={onClose} />
       </View>
     </View>
@@ -88,9 +93,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgorund,
     paddingTop: 40,
   },
-  input: {
-    borderColor: '#000',
-    borderWidth: 1,
+  formContainer: {
+    flex: 1,
+    paddingVertical: 20,
+  },
+  formActionConatainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 15,
   },
 });
 
