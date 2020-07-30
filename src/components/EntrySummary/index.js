@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   inner: {
     flexDirection: 'row',
     paddingHorizontal: 10,
+    alignItems: 'center',
   },
 });
 
