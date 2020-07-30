@@ -42,6 +42,7 @@ const Container = ({
 
 const styles = StyleSheet.create({
   container: {
+    zIndex: -1,
     backgroundColor: Colors.wetAsphalt,
     borderStyle: 'solid',
     borderWidth: 1,

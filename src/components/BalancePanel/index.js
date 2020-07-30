@@ -31,13 +31,16 @@ const BalancePanel = ({onNewEntryPress}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: -20,
+  },
   panel: {
-    paddingVertical: 10,
+    paddingTop: 10,
     minHeight: 100,
     justifyContent: 'center',
   },
   button: {
+    zIndex: 1,
     backgroundColor: Colors.emerald,
     borderRadius: 50,
     justifyContent: 'center',

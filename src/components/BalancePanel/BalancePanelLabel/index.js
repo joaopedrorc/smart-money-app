@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 1,
   },
   label: {
     fontSize: 14,

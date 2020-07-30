@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "^2.6.1",
     "@react-native-community/masked-view": "^0.1.10",
+    "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
@@ -24,6 +25,7 @@
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
     "react-native-svg": "^12.1.0",
+    "react-native-svg-charts": "^5.4.0",
     "react-native-vector-icons": "^7.0.0",
     "react-navigation": "^4.4.0",
     "realm": "^6.0.3",
