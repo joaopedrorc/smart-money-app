@@ -1,7 +1,9 @@
-import {getRealm} from './Realm';
-
 import _ from 'lodash';
 import moment from '../vendors/moment';
+
+import {getRealm} from './Realm';
+import {getUUID} from './UUID';
+import Colors from '../styles/Colors';
 
 export const getBalance = async (untilDays = 0) => {
   const realm = await getRealm();
@@ -66,6 +68,23 @@ export const getBalanceSumByCategory = async (days, showOthers = true) => {
     }))
     .filter(({amount}) => amount > 0)
     .orderBy('amount', 'desc');
+
+  const othersLimit = 4;
+
+  if (showOthers && _.size(entries) >= othersLimit) {
+    const data1 = _(entries).slice(0, othersLimit);
+    const data2 = [
+      {
+        category: {id: getUUID(), name: 'Outros', color: Colors.concrete},
+        amount: _(entries)
+          .slice(othersLimit)
+          .map(({amount}) => amount)
+          .sum(),
+      },
+    ];
+
+    entries = [...data1, ...data2];
+  }
 
   console.log('getBalanceSumByCategory :: ', JSON.stringify(entries));
 
