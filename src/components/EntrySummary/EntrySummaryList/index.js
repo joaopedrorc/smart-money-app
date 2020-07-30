@@ -1,19 +1,19 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
 
-const EntrySummaryList = ({entriesGruped}) => {
-  return (
-    <View>
-      <FlatList
-        data={entriesGruped}
-        renderItem={({item}) => (
-          <Text style={styles.entry}>
-            - {item.description} - {item.amount}
-          </Text>
-        )}
-      />
-    </View>
-  );
+const EntrySummaryList = ({data}) => {
+  return <View />;
+  // <View>
+  //   <FlatList
+  //     data={data}
+  //     renderItem={({item}) => (
+  //       <Text style={styles.entry}>
+  //         - {item.description} - {item.amount}
+  //       </Text>
+  //     )}
+  //   />
+  // </View>
+  // );
 };
 
 const styles = StyleSheet.create({

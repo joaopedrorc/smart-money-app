@@ -119,7 +119,7 @@ export const getDefaultCategories = () => {
     {
       id: getUUID(),
       name: 'Outras Receitas',
-      color: '#8c7ae6',
+      color: '#8c7ae9',
       isCredit: true,
       order: 4,
     },

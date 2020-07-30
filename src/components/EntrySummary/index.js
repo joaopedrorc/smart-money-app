@@ -1,29 +1,35 @@
 import React from 'react';
+import {View, StyleSheet} from 'react-native';
 
 import Container from '../Core/Container';
 
 import EntrySummaryChart from './EntrySummaryChart';
 import EntrySummaryList from './EntrySummaryList';
 
-const entriesGruped = [
-  {key: '1', description: 'Alimentação', amount: 'R$200'},
-  {key: '2', description: 'Combustível', amount: 'R$20'},
-  {key: '3', description: 'Aluguel', amount: 'R$500'},
-  {key: '4', description: 'Lazer', amount: 'R$400'},
-  {key: '5', description: 'Outros', amount: 'R$1.200'},
-];
+import useBalanceSumByCategory from '../../hooks/useBalanceSumByCategory';
 
-const EntrySummary = ({onPressActionButton}) => {
+const EntrySummary = ({days = 7, onPressActionButton}) => {
+  const [balanceSum] = useBalanceSumByCategory(days);
+
   return (
     <Container
       title="Categorias"
-      actionLabelText="Últimos 7 dias"
+      actionLabelText={`Últimos ${days} dias`}
       actionButtonText="Ver mais"
       onPressActionButton={onPressActionButton}>
-      <EntrySummaryChart />
-      <EntrySummaryList entriesGruped={entriesGruped} />
+      <View style={styles.inner}>
+        <EntrySummaryChart data={balanceSum} />
+        <EntrySummaryList data={balanceSum} />
+      </View>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  inner: {
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+  },
+});
 
 export default EntrySummary;
