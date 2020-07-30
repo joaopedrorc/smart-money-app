@@ -6,14 +6,13 @@ import {BarChart} from 'react-native-svg-charts';
 import useBalanceSumByDate from '../../../hooks/useBalanceSumByDate';
 
 const BalancePanelChart = () => {
-  const data = [100, 80, -30, 300, 10, 35, 70];
   const [balanceSum] = useBalanceSumByDate();
 
   return (
     <View style={styles.container}>
       <BarChart
         style={styles.chart}
-        data={data}
+        data={balanceSum}
         svg={{fill: 'rgba(0,0,0,.1)', stroke: 'rgba(0,0,0,.1)', strokeWidth: 1}}
         contentInset={{top: 0, bottom: 0}}
       />

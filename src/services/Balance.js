@@ -31,14 +31,15 @@ export const getBalanceSumByDate = async (days) => {
   }
 
   entries = entries.sorted('entryAt');
-
   entries = _(entries)
-    .groupBy(({entryAt}) => moment(entryAt).format('YYYMMDD'))
+    .groupBy(({entryAt}) => moment(entryAt).format('YYYYMMDD'))
     .map((entry) => _.sumBy(entry, 'amount'))
     .map((amount, index, collection) => {
-      (index === 0 ? startBalance : 0) +
+      return (
+        (index === 0 ? startBalance : 0) +
         _.sum(_.slice(collection, 0, index)) +
-        amount;
+        amount
+      );
     });
 
   console.log(JSON.stringify(entries));
