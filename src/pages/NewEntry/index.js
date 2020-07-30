@@ -10,6 +10,7 @@ import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from '../NewEntry/NewEntryInput';
 import NewEntryCategoryPicker from '../NewEntry/NewEntryCategoryPicker';
 import NewEntryDatePicker from '../NewEntry/NewEntryDatePicker';
+import NewEntryAddressPicker from './NewEntryAddressPicker';
 import NewEntryDeleteAction from '../NewEntry/NewEntryDeleteAction';
 
 import useEntries from '../../hooks/useEntries';
@@ -78,6 +79,7 @@ const NewEntry = ({navigation}) => {
 
         <View style={styles.formActionConatainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          <NewEntryAddressPicker />
           <NewEntryDeleteAction entry={entry} onOkPress={onDelete} />
         </View>
       </View>
